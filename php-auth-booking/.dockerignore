@@ -1,0 +1,17 @@
+# Archivo de configuración para ignorar archivos en Docker
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+.env.example
+README.md
+.editorconfig
+.gitattributes
+/tests
+/coverage
+.nyc_output
+.DS_Store
+*.log
