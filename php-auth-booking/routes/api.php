@@ -17,4 +17,6 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    
+    Route::post('/auth/change-password', [AuthController::class, 'changePassword']);
 });
