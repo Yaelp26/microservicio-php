@@ -15,6 +15,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role',
     ];
 
     protected $hidden = [
@@ -28,9 +29,22 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
-    // Requerido por JWT
+    // Requerido por JWT - Incluir role en el token
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'role' => $this->role,
+        ];
+    }
+
+    // Helper methods para verificar roles
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isClient()
+    {
+        return $this->role === 'client';
     }
 }
