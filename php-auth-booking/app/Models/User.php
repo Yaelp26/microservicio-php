@@ -29,11 +29,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
-    // Requerido por JWT - Incluir role en el token
+    // Requerido por JWT
     public function getJWTCustomClaims()
     {
         return [
-            'role' => $this->role,
+            'iss'  => env('JWT_ISS', 'travelink-laravel'),
+            'aud'  => env('JWT_AUD', 'travelink-api'),
         ];
     }
 
