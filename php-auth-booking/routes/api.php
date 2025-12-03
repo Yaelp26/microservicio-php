@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReservaController;
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -16,6 +17,9 @@ Route::middleware(['jwt.verify'])->group(function () {
         return $request->user();
     });
     Route::post('/auth/change-password', [AuthController::class, 'changePassword']);
+    
+    // Webhook a .NET para crear reservas
+    Route::post('/reservas', [ReservaController::class, 'create']);
     
     // Rutas exclusivas para admin
     Route::middleware(['role:admin'])->group(function () {
